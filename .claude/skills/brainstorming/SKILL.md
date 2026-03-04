@@ -27,7 +27,7 @@ Before exploring the project, verify the CONTRIBUTING.md workflow prerequisites.
 
 Ask: "Which GitHub issue does this work address? (Enter issue number, URL, or 'none' to skip)"
 
-- **If number or URL provided:** Run `gh issue view <number> --json title,state` to verify the issue exists. Capture the issue number and title for the design doc header.
+- **If number or URL provided:** Run `gh issue view <number> --json title,state` to verify the issue exists. Capture the issue number and title for the design doc header. If the issue is **closed**, warn: "Issue #N is closed. Continue with this issue, pick a different one, or proceed without?" Handle accordingly.
 - **If 'none':** Warn: "CONTRIBUTING.md requires filing a GitHub issue before brainstorming. You can create one now or proceed without one." If the user proceeds, record `Issue: None (exploratory)` for the design doc.
 
 ### 1b. Branch Check
