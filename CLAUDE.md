@@ -43,6 +43,63 @@ On first use in a fresh clone, follow `docs/FIRST_RUN.md` to initialize project 
 - **Initialization**: `.envrc` sources `use flake` and runs scripts from `.envrc.d/` and `.envrc.local.d/`.
 - If you add a dependency to `flake.nix`, ask the user to restart the session so `direnv` reloads.
 
+## Architecture
+
+> **Organizing principle:** Code is organized so any subsystem fits in a single
+> agent context window. Self-contained units over shared abstractions.
+
+### Directory Structure
+
+**Default: Vertical slices (feature-based)**
+
+Each feature or subsystem gets its own directory containing all its components:
+handler, validation, data access, types, tests. An agent should be able to
+understand a feature by reading one directory.
+
+    features/
+      feature-name/
+        SPEC.md          # Subsystem specification (see below)
+        handler.ext      # Entry point
+        types.ext        # Feature-specific types
+        store.ext        # Data access
+        tests/
+          test_handler.ext
+
+**When vertical slices don't fit:**
+- **Libraries/packages:** Organize by module. Each module gets a SPEC.md.
+- **CLI tools:** Organize by command. Each command is a slice.
+- **Data pipelines:** Organize by stage. Each stage is a slice.
+- **The principle stays the same:** one directory = one context load for an agent.
+
+### Subsystem Specifications (SPEC.md)
+
+Every non-trivial directory gets a `SPEC.md` — a machine-readable specification
+scoped to that subsystem. Agents load the nearest SPEC.md when working on files.
+
+**When to create one:** When a directory has 3+ files or contains invariants an
+agent could violate without knowing. Use `/codify-subsystem` to create one.
+
+**Format:** See `docs/spec-template.md`.
+
+**Routing:** Agents walk up the directory tree from the file being modified and
+load the nearest SPEC.md. This mirrors how .gitignore resolution works.
+
+### Subsystem Map
+
+| Subsystem | Path | Purpose |
+|---|---|---|
+| *(populated as project grows — use `/codify-subsystem`)* | | |
+
+For detailed specifications, read the SPEC.md in each subsystem directory.
+
+### Context Budgeting
+
+- Each subsystem should be understandable from its SPEC.md + source files
+  loaded together in ~50% of a context window.
+- If a subsystem exceeds this, split it into sub-features.
+- Prefer duplication over deep cross-subsystem coupling — an agent working on
+  Feature A should rarely need to load Feature B's code.
+
 ## Workflow
 
 <!-- Describe the steps Claude Code should follow when working on this project. -->
