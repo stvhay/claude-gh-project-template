@@ -89,6 +89,13 @@ existing tests to spec item IDs (INV-N, FAIL-N). Use the naming convention
 failure mode tests (matching `docs/spec-template.md`). Flag any spec items
 that lack corresponding tests — these need tests written.
 
+**Existing non-conforming tests:** If the subsystem already has tests that
+cover spec items but use different naming, map them as-is in the coverage
+table (e.g., `test_checkout_rejects_expired` → FAIL-2). Note the current
+name and the recommended rename. Do not require renaming before the spec
+ships — the coverage table documents what exists, and renaming can happen
+incrementally.
+
 **Size check:** If the spec exceeds 400 lines, suggest splitting the subsystem
 or summarizing verbose sections.
 
