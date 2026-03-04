@@ -85,7 +85,7 @@ digraph process {
 
 1. **Read plan.** Extract all tasks with full text. Note dependencies.
 2. **Check task sizing.** Each task should fit ~50% of a subagent's context window. If a task looks too large, break it up before dispatching.
-3. **Load subsystem context.** For each task, find the nearest SPEC.md to the task's target files. If one exists, prepend its key sections (Purpose, Invariants, Failure Modes) to the task context when dispatching.
+3. **Load subsystem context.** For each task, find the nearest SPEC.md to the task's target files. If one exists, prepend its key sections (Purpose, Invariants, Failure Modes) to the task context when dispatching. For cross-cutting tasks: include the full spec for the primary subsystem and only the Public Interface section from adjacent subsystems. If a task needs >2 specs, it crosses too many boundaries — split it before dispatching.
 4. **Dispatch task.** Fresh subagent (via Task tool) with full task text and context. For independent tasks, dispatch in parallel. For dependent tasks, wait.
 5. **Handle questions.** If the subagent asks questions, answer clearly before letting them proceed.
 6. **Spec review.** Dispatch spec compliance reviewer (./spec-reviewer-prompt.md). If issues found, dispatch fix subagent, then re-review.

@@ -99,6 +99,9 @@ For detailed specifications, read the SPEC.md in each subsystem directory.
 - If a subsystem exceeds this, split it into sub-features.
 - Prefer duplication over deep cross-subsystem coupling — an agent working on
   Feature A should rarely need to load Feature B's code.
+- **Cross-cutting tasks:** Load the primary subsystem's full spec. For adjacent
+  subsystems, load only the Public Interface section (contracts, not internals).
+  If a task needs >2 full specs, split it along subsystem boundaries.
 
 ### Testing Convention
 
