@@ -57,15 +57,34 @@ You MUST create a task for each of these items and complete them in order:
 
 ```dot
 digraph brainstorming {
+    // Pre-flight: issue check
     "Pre-flight checks" [shape=box];
     "Issue provided?" [shape=diamond];
     "Verify issue exists" [shape=box];
     "Warn: issue recommended" [shape=box];
     "User proceeds?" [shape=diamond];
+    "END" [shape=doublecircle];
+    "Pre-flight checks" -> "Issue provided?";
+    "Issue provided?" -> "Verify issue exists" [label="yes"];
+    "Issue provided?" -> "Warn: issue recommended" [label="none"];
+    "Verify issue exists" -> "On feature branch?";
+    "Warn: issue recommended" -> "User proceeds?";
+    "User proceeds?" -> "On feature branch?" [label="yes"];
+    "User proceeds?" -> "END" [label="no"];
+
+    // Pre-flight: branch check
     "On feature branch?" [shape=diamond];
     "Warn: on main" [shape=box];
     "Create branch?" [shape=diamond];
     "Invoke using-git-worktrees" [shape=box];
+    "On feature branch?" -> "Explore project context" [label="yes"];
+    "On feature branch?" -> "Warn: on main" [label="no"];
+    "Warn: on main" -> "Create branch?";
+    "Create branch?" -> "Invoke using-git-worktrees" [label="yes"];
+    "Create branch?" -> "Explore project context" [label="no, proceed anyway"];
+    "Invoke using-git-worktrees" -> "Explore project context";
+
+    // Discovery and design
     "Explore project context" [shape=box];
     "Prior ideation exists?" [shape=diamond];
     "Read idea files" [shape=box];
@@ -74,25 +93,6 @@ digraph brainstorming {
     "Consider subsystem boundaries" [shape=box];
     "Present design sections" [shape=box];
     "User approves design?" [shape=diamond];
-    "Write design doc" [shape=box];
-    "UX design needed?" [shape=diamond];
-    "Invoke ux-design-agent" [shape=box];
-    "Invoke writing-plans skill" [shape=doublecircle];
-    "END" [shape=doublecircle];
-
-    "Pre-flight checks" -> "Issue provided?";
-    "Issue provided?" -> "Verify issue exists" [label="yes"];
-    "Issue provided?" -> "Warn: issue recommended" [label="none"];
-    "Verify issue exists" -> "On feature branch?";
-    "Warn: issue recommended" -> "User proceeds?";
-    "User proceeds?" -> "On feature branch?" [label="yes"];
-    "User proceeds?" -> "END" [label="no"];
-    "On feature branch?" -> "Explore project context" [label="yes"];
-    "On feature branch?" -> "Warn: on main" [label="no"];
-    "Warn: on main" -> "Create branch?";
-    "Create branch?" -> "Invoke using-git-worktrees" [label="yes"];
-    "Create branch?" -> "Explore project context" [label="no, proceed anyway"];
-    "Invoke using-git-worktrees" -> "Explore project context";
     "Explore project context" -> "Prior ideation exists?";
     "Prior ideation exists?" -> "Read idea files" [label="yes"];
     "Prior ideation exists?" -> "Ask clarifying questions" [label="no"];
@@ -103,6 +103,12 @@ digraph brainstorming {
     "Present design sections" -> "User approves design?";
     "User approves design?" -> "Present design sections" [label="no, revise"];
     "User approves design?" -> "Write design doc" [label="yes"];
+
+    // Finalization
+    "Write design doc" [shape=box];
+    "UX design needed?" [shape=diamond];
+    "Invoke ux-design-agent" [shape=box];
+    "Invoke writing-plans skill" [shape=doublecircle];
     "Write design doc" -> "UX design needed?";
     "UX design needed?" -> "Invoke ux-design-agent" [label="yes"];
     "UX design needed?" -> "Invoke writing-plans skill" [label="no"];
