@@ -39,20 +39,22 @@ An agent modifying this subsystem must not break these contracts.]
 ## Invariants
 
 [Things that must ALWAYS be true. These are the correctness pillars — an agent
-that violates any of these has introduced a bug.]
+that violates any of these has introduced a bug. Each invariant gets an ID for
+test traceability.]
 
-| Invariant | Why It Matters |
-|---|---|
-| | |
+| ID | Invariant | Why It Matters |
+|---|---|---|
+| INV-1 | | |
 
 ## Failure Modes
 
 [Known ways this subsystem breaks and how to fix them. An agent encountering
-these symptoms should try the fix before investigating further.]
+these symptoms should try the fix before investigating further. Each failure
+mode gets an ID for test traceability.]
 
-| Symptom | Cause | Fix |
-|---|---|---|
-| | | |
+| ID | Symptom | Cause | Fix |
+|---|---|---|---|
+| FAIL-1 | | | |
 
 ## Testing
 
@@ -63,6 +65,19 @@ fixtures or environment setup, and the mocking strategy.]
 # Run subsystem tests
 [exact command here]
 ```
+
+### Coverage
+
+Every INV-N must have at least one positive test (verifies the invariant holds).
+Every FAIL-N must have at least one negative test (verifies graceful handling).
+Test names include the spec item ID for bidirectional traceability.
+
+**Naming convention:** `test_inv1_description` for invariants, `test_fail1_description` for failure modes.
+
+| Spec Item | Test | Description |
+|---|---|---|
+| INV-1 | `test_inv1_[description]` | Verifies [invariant] holds |
+| FAIL-1 | `test_fail1_[description]` | Verifies [failure mode] is handled |
 
 ## Dependencies
 
