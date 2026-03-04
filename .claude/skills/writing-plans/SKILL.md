@@ -71,6 +71,9 @@ Each task must be self-contained — a subagent receiving only this task text ha
 
 **Context:** [What this task builds, where it fits in the system, any relevant architectural decisions. Include enough that a fresh subagent understands the landscape without reading other tasks.]
 
+**Subsystem spec:** [Path to nearest SPEC.md, or "None — new subsystem"]
+**Key invariants from spec:** [List the invariants the subagent must not violate, or "N/A"]
+
 **Files:**
 - Create: `exact/path/to/file.py`
 - Modify: `exact/path/to/existing.py:123-145`
@@ -127,6 +130,7 @@ Mark each task's dependencies explicitly. Independent tasks can be dispatched to
 - Exact commands with expected output
 - Each task self-contained with full context
 - Size tasks to fit ~50% of subagent context window
+- Include nearest SPEC.md path and key invariants in each task
 - Mark dependencies between tasks
 - Acceptance criteria = what must be TRUE = the tests
 - DRY, YAGNI, TDD, frequent commits

@@ -85,14 +85,15 @@ digraph process {
 
 1. **Read plan.** Extract all tasks with full text. Note dependencies.
 2. **Check task sizing.** Each task should fit ~50% of a subagent's context window. If a task looks too large, break it up before dispatching.
-3. **Dispatch task.** Fresh subagent (via Task tool) with full task text and context. For independent tasks, dispatch in parallel. For dependent tasks, wait.
-4. **Handle questions.** If the subagent asks questions, answer clearly before letting them proceed.
-5. **Spec review.** Dispatch spec compliance reviewer (./spec-reviewer-prompt.md). If issues found, dispatch fix subagent, then re-review.
-6. **Quality review.** Dispatch code quality reviewer (./code-quality-reviewer-prompt.md). If issues found, dispatch fix subagent, then re-review.
-7. **Next task.** Repeat until all tasks complete.
-8. **Verify acceptance criteria.** Check the plan's acceptance criteria. Run the tests.
-9. **Final review.** Dispatch code reviewer for the entire implementation — catches cross-task integration issues.
-10. **Finish.** Use finishing-a-development-branch.
+3. **Load subsystem context.** For each task, find the nearest SPEC.md to the task's target files. If one exists, prepend its key sections (Purpose, Invariants, Failure Modes) to the task context when dispatching.
+4. **Dispatch task.** Fresh subagent (via Task tool) with full task text and context. For independent tasks, dispatch in parallel. For dependent tasks, wait.
+5. **Handle questions.** If the subagent asks questions, answer clearly before letting them proceed.
+6. **Spec review.** Dispatch spec compliance reviewer (./spec-reviewer-prompt.md). If issues found, dispatch fix subagent, then re-review.
+7. **Quality review.** Dispatch code quality reviewer (./code-quality-reviewer-prompt.md). If issues found, dispatch fix subagent, then re-review.
+8. **Next task.** Repeat until all tasks complete.
+9. **Verify acceptance criteria.** Check the plan's acceptance criteria. Run the tests.
+10. **Final review.** Dispatch code reviewer for the entire implementation — catches cross-task integration issues.
+11. **Finish.** Use finishing-a-development-branch.
 
 ### Parallel dispatch
 

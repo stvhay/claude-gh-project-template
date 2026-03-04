@@ -153,3 +153,22 @@ The simplification skill will:
 - Re-run verification after changes
 
 Only after simplification completes and final verification passes can completion be claimed.
+
+## SPEC.md Invariant Check
+
+After standard verification passes, check for subsystem specifications:
+
+1. **Find SPEC.md** — Walk up from modified files to find the nearest SPEC.md
+2. **If found, check invariants** — Review each invariant in the spec's table.
+   For each one, verify it still holds after your changes.
+3. **Report** — Include invariant check results in verification output
+
+This is a lightweight consistency check, not a replacement for tests. If an
+invariant is unclear or untestable, note it rather than skipping it.
+
+```
+SPEC.md invariant check:
+- [path/to/SPEC.md]
+- Invariant 1: [description] → ✅ Still holds / ❌ Violated
+- Invariant 2: [description] → ✅ Still holds / ❌ Violated
+```

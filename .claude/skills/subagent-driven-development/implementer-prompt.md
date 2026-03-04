@@ -16,6 +16,11 @@ Task tool (general-purpose):
 
     [Scene-setting: where this fits, dependencies, architectural context]
 
+    ## Subsystem Specification
+
+    [If a SPEC.md exists for this subsystem, paste the Invariants and Failure
+    Modes sections here. If no SPEC.md exists, omit this section.]
+
     ## Before You Begin
 
     If you have questions about:
