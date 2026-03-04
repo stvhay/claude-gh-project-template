@@ -76,11 +76,13 @@ These skills ship with the repo in `.claude/skills/`. They are loaded automatica
 | `/using-git-worktrees` | To create an isolated worktree for feature work |
 | `/writing-clearly-and-concisely` | Final editing pass on prose (docs, commit messages) |
 | `/writing-skills` | When creating or modifying skills in `.claude/skills/` |
+| `/codify-subsystem` | To create or update a subsystem SPEC.md |
 
 ## Project-Specific Guidelines
 
 - **Dependencies.** If you add a dependency, update `flake.nix` (Nix), the Homebrew instructions in `README.md`, and any dependency checks in `.envrc.d/setup.sh`.
 - **Documentation.** If your change affects usage, output, or setup, update `README.md` to match.
+- **Subsystem specs.** When a directory grows to 3+ files or contains important invariants, use `/codify-subsystem` to create a SPEC.md. See the Architecture section of CLAUDE.md.
 
 ## Contributing Skills
 
