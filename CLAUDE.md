@@ -100,6 +100,16 @@ For detailed specifications, read the SPEC.md in each subsystem directory.
 - Prefer duplication over deep cross-subsystem coupling — an agent working on
   Feature A should rarely need to load Feature B's code.
 
+### Testing Convention
+
+Tests are anchored to SPEC.md items. Each invariant (INV-N) gets a positive
+test verifying the invariant holds. Each failure mode (FAIL-N) gets a negative
+test verifying graceful handling. Test names include the spec item ID for
+traceability (e.g., test_inv1_total_equals_sum, test_fail2_rejects_expired).
+
+This helps agents write tests that verify *requirements*, not *implementations*.
+See docs/spec-template.md for the coverage table format.
+
 ## Workflow
 
 <!-- Describe the steps Claude Code should follow when working on this project. -->
