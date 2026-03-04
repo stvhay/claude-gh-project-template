@@ -34,5 +34,8 @@ result
 # Working documents (plans live in PR body, not repo)
 docs/plans/
 
+# Git worktrees
+.worktrees/
+
 # Project memory (created by Claude Code on first run)
 MEMORY.md

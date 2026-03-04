@@ -37,6 +37,8 @@ claude
 
 Then follow the workflow defined in `CLAUDE.md`.
 
+For quick-start aliases and usage examples, see [USAGE.md](USAGE.md).
+
 ## What's Included
 
 | Path | Purpose |
