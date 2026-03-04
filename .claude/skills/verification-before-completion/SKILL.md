@@ -160,7 +160,15 @@ After standard verification passes, check for subsystem specifications:
 
 1. **Find SPEC.md** — Walk up from modified files to find the nearest SPEC.md
 2. **If found, check invariants** — Review each invariant in the spec's table.
-   For each one, verify it still holds after your changes.
+   For each one, verify it still holds after your changes. How to verify
+   depends on the invariant type:
+   - **Testable invariants** (data constraints, API contracts): run the
+     corresponding `test_invN_*` test. A passing test is sufficient evidence.
+   - **Architectural invariants** (coupling rules, file organization, naming):
+     review the diff against the constraint. Confirm the change doesn't
+     introduce a violation.
+   - **Unclear or untestable invariants**: note them in the report rather
+     than skipping — flag for human review.
 3. **Check coverage** — If the SPEC.md has a Coverage table in its Testing
    section, verify that every INV-N and FAIL-N has a corresponding test and
    that the test passes. Flag uncovered spec items.
