@@ -84,8 +84,10 @@ alternatives considered, constraints from external systems.)
 Incorporate all answers. Write the final SPEC.md to the target directory.
 
 **Coverage table:** Populate the Testing section's Coverage table by mapping
-existing tests to spec item IDs (INV-N, FAIL-N). Flag any spec items that
-lack corresponding tests — these need tests written.
+existing tests to spec item IDs (INV-N, FAIL-N). Use the naming convention
+`test_invN_description` for invariant tests and `test_failN_description` for
+failure mode tests (matching `docs/spec-template.md`). Flag any spec items
+that lack corresponding tests — these need tests written.
 
 **Size check:** If the spec exceeds 400 lines, suggest splitting the subsystem
 or summarizing verbose sections.
