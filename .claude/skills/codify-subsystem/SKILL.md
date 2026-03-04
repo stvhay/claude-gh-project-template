@@ -115,4 +115,6 @@ If the spec covers cross-cutting concerns, also add to the
 **Related skills:**
 - **brainstorming** — may recommend codify-subsystem when subsystem boundaries are identified
 - **writing-plans** — loads SPEC.md into task context
-- **verification-before-completion** — checks SPEC.md invariants
+- **subagent-driven-development** — prepends SPEC.md context when dispatching implementer subagents
+- **executing-plans** — loads nearest SPEC.md before executing each task
+- **verification-before-completion** — checks SPEC.md invariants after verification

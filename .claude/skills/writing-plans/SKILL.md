@@ -71,7 +71,7 @@ Each task must be self-contained — a subagent receiving only this task text ha
 
 **Context:** [What this task builds, where it fits in the system, any relevant architectural decisions. Include enough that a fresh subagent understands the landscape without reading other tasks.]
 
-**Subsystem spec:** [Path to nearest SPEC.md, or "None — new subsystem"]
+**Subsystem spec(s):** [Path(s) to nearest SPEC.md, or "None — new subsystem". If the task crosses subsystem boundaries, list all relevant specs.]
 **Key invariants from spec:** [List the invariants the subagent must not violate, or "N/A"]
 
 **Files:**

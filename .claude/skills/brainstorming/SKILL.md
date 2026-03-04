@@ -26,7 +26,7 @@ You MUST create a task for each of these items and complete them in order:
 1. **Explore project context** — check files, docs, recent commits
 2. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 3. **Propose 2-3 approaches** — with trade-offs and your recommendation
-4. **Consider subsystem boundaries** — does this fit in one subsystem or cross boundaries? If it crosses, note which SPEC.md files are relevant and flag that the plan should be split by subsystem
+4. **Consider subsystem boundaries** — does this fit in one subsystem or cross boundaries? If it crosses, note which SPEC.md files are relevant and flag that the plan should be split by subsystem. If a new subsystem boundary is identified that lacks a SPEC.md, recommend `/codify-subsystem` after implementation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
 6. **Write design doc** — save to `docs/plans/YYYY-MM-DD-<topic>-design.md` (local working directory, not committed)
 7. **Evaluate UX design need** — if user-facing or agentic, recommend ux-design-agent
