@@ -67,3 +67,78 @@ It then:
 - Adds language-specific `.gitignore` patterns and `flake.nix` dependencies (if applicable)
 
 After that, you're ready to start building. Run `claude` to begin.
+
+## Running in an Apple Container
+
+Add the `dev-container` function to your shell profile to launch projects inside an isolated [Apple Container](https://github.com/apple/container).
+
+### Prerequisites
+
+- macOS 26 (Tahoe) or later
+- Apple Silicon Mac
+- [Apple Container](https://github.com/apple/container) installed
+
+### The function
+
+```bash
+# Override the shared Nix store location, or leave unset for the default.
+# export DEV_CONTAINER_NIX_CACHE="$HOME/.dev-containers/nix"
+
+dev-container() {
+  local nix_cache="${DEV_CONTAINER_NIX_CACHE:-$HOME/.dev-containers/nix}"
+
+  if [[ $# -ne 1 ]]
+  then
+    echo "Usage: dev-container <project-directory>" >&2
+    return 1
+  fi
+
+  local project_dir
+  project_dir="$(cd "$1" 2>/dev/null && pwd)" || {
+    echo "Error: directory '$1' does not exist" >&2
+    return 1
+  }
+
+  mkdir -p "$nix_cache"
+
+  container run \
+    -v "$project_dir:/workspace" \
+    -v "$nix_cache:/nix" \
+    --ssh \
+    nixos/nix \
+    /bin/sh -c '
+      # Install Claude Code if not already cached in shared Nix store
+      command -v claude >/dev/null 2>&1 || nix-env -iA nixpkgs.nodejs && npm i -g @anthropic-ai/claude-code
+
+      # Alias claude to bypass permissions (container is isolated)
+      echo "alias claude=\"claude --dangerously-skip-permissions\"" >> ~/.profile
+
+      cd /workspace
+      echo "Dev container ready. Run: claude"
+      exec /bin/sh -l
+    '
+}
+```
+
+Then: `dev-container ~/Projects/my-app`
+
+### What each step does
+
+- **Argument validation** — Requires exactly one argument (a directory path) and verifies the directory exists.
+- `mkdir -p "$nix_cache"` — Ensure the shared Nix store directory exists on the host.
+- `-v "$project_dir:/workspace"` — Bind-mount the project directory into the container. Edits are visible on both sides.
+- `-v "$nix_cache:/nix"` — Bind-mount a shared Nix store. Persisted across containers so packages are downloaded once.
+- `--ssh` — Forward the host SSH agent so git clone/push works inside the container.
+- `nixos/nix` — Stock OCI image with Nix pre-installed (Alpine-based).
+- **Claude Code install** — Installs Node.js via Nix and Claude Code via npm on first run. Skipped on subsequent runs (cached in shared Nix store).
+- **claude alias** — Aliases `claude` to `claude --dangerously-skip-permissions` since the container is an isolated environment.
+
+### Environment variables
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `DEV_CONTAINER_NIX_CACHE` | `$HOME/.dev-containers/nix` | Override the shared Nix store location on the host |
+
+### Installation
+
+Add the function to your shell profile — `~/.bashrc`, `~/.zshrc`, or a file sourced by your shell (e.g., `~/.local/etc/profile.d/`).
