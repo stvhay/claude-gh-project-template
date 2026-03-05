@@ -14,6 +14,7 @@ Understanding *why* these patterns work helps you adapt them to your project's n
 2. [Agent-Oriented Design](agent-oriented-design.md) — Designing codebases for AI consumption
 3. [Context Optimization](context-optimization.md) — Three-tier architecture and context budgeting
 4. [SPEC.md Rationale](spec-rationale.md) — Why machine-readable specifications
+5. [SPEC.md Experiments](spec-experiments.md) — Empirical validation of template enhancements
 
 **Quick summaries:**
 
@@ -23,6 +24,7 @@ Understanding *why* these patterns work helps you adapt them to your project's n
 | [spec-rationale.md](spec-rationale.md) | How machine-readable specifications help agents maintain correctness |
 | [context-optimization.md](context-optimization.md) | Why single-file configs don't scale and how three-tier architecture solves it |
 | [agent-oriented-design.md](agent-oriented-design.md) | Self-contained components and progressive disclosure for agent workflows |
+| [spec-experiments.md](spec-experiments.md) | Controlled experiments validating Decision Framework and Enforcement column |
 
 ## Key Academic Papers
 
