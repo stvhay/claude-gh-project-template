@@ -110,8 +110,9 @@ test verifying the invariant holds. Each failure mode (FAIL-N) gets a negative
 test verifying graceful handling. Test names include the spec item ID for
 traceability (e.g., test_inv1_total_equals_sum, test_fail2_rejects_expired).
 
-This helps agents write tests that verify *requirements*, not *implementations*.
-See docs/spec-template.md for the coverage table format.
+Traceability lives in test files, not in specs. Add an inline comment on the
+test function's `def` line: `# Tests INV-N` or `# Tests FAIL-N`. This stays
+in sync naturally because the comment lives next to the code it describes.
 
 ## Workflow
 

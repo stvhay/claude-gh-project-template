@@ -72,8 +72,8 @@ seen, and what caused them?"
 Any special setup needed?"
 
 **Test mapping:** "Are there existing tests for this subsystem? If so, which
-tests verify which invariants or failure modes?" (This populates the coverage
-table in the Testing section.)
+tests verify which invariants or failure modes?" (This informs the inline
+`# Tests INV-N` comments to add on test method def lines.)
 
 **Purpose:** "Anything about *why* this subsystem exists that isn't obvious from
 the code?" (Sometimes the code shows *what* but not *why* — design decisions,
@@ -83,18 +83,19 @@ alternatives considered, constraints from external systems.)
 
 Incorporate all answers. Write the final SPEC.md to the target directory.
 
-**Coverage table:** Populate the Testing section's Coverage table by mapping
-existing tests to spec item IDs (INV-N, FAIL-N). Use the naming convention
+**Inline test comments:** For each spec item (INV-N, FAIL-N) that has a
+corresponding test, add a `# Tests INV-N` or `# Tests FAIL-N` inline comment
+on the test method's `def` line. Use the naming convention
 `test_invN_description` for invariant tests and `test_failN_description` for
-failure mode tests (matching `docs/spec-template.md`). Flag any spec items
-that lack corresponding tests — these need tests written.
+failure mode tests. Flag any spec items that lack corresponding tests — these
+need tests written.
 
 **Existing non-conforming tests:** If the subsystem already has tests that
-cover spec items but use different naming, map them as-is in the coverage
-table (e.g., `test_checkout_rejects_expired` → FAIL-2). Note the current
-name and the recommended rename. Do not require renaming before the spec
-ships — the coverage table documents what exists, and renaming can happen
-incrementally.
+cover spec items but use different naming, add the inline comment to those
+tests as-is (e.g., `def test_checkout_rejects_expired():  # Tests FAIL-2`).
+Note the current name and the recommended rename. Do not require renaming
+before the spec ships — the inline comment documents what exists, and renaming
+can happen incrementally.
 
 **Size check:** If the spec exceeds 400 lines, suggest splitting the subsystem
 or summarizing verbose sections.

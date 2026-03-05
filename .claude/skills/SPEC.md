@@ -14,15 +14,11 @@ alongside the project, and tested via the same TDD methodology they prescribe
 
 ## Core Mechanism
 
-Claude Code discovers skills by scanning `.claude/skills/*/SKILL.md` for YAML
-frontmatter. The `name` field maps to `/skill-name` invocation, and the
-`description` field drives automatic keyword-based triggering.
-
-**Skill loading flow:**
-1. User invokes `/skill-name` or triggers via keyword match in conversation
-2. Claude Code reads the skill's `SKILL.md` and any referenced support files
-3. Agent follows the skill's checklist/process, using referenced prompts and
-   templates as needed
+Skills are discovered via YAML frontmatter in `.claude/skills/*/SKILL.md`.
+The `name` field maps to `/skill-name` invocation; the `description` field
+drives automatic keyword-based triggering. Loading is one-directional: Claude
+Code reads a skill's directory, and the skill references other skills by name,
+never by path.
 
 **Key files:**
 - `UPSTREAM-superpowers.md` — Tracks provenance and sync status for skills
@@ -61,24 +57,8 @@ frontmatter. The `name` field maps to `/skill-name` invocation, and the
 
 ## Testing
 
-Skills are tested via the TDD methodology defined in `writing-skills/SKILL.md`:
-pressure scenarios run against subagents with and without the skill loaded.
-
-```bash
-# No automated test suite — skills are validated via subagent pressure testing
-# See writing-skills/testing-skills-with-subagents.md for the process
-```
-
-### Coverage
-
-| Spec Item | Test | Description |
-|---|---|---|
-| INV-1 | Manual: verify frontmatter parses | Each new skill is checked during `/writing-skills` process |
-| INV-2 | Manual: grep for duplicate names | Check `grep -r '^name:' .claude/skills/*/SKILL.md` for duplicates |
-| INV-3 | Manual: verify gitignore entry | Part of `/codify-subsystem` and PR review checklist |
-| INV-4 | Manual: check UPSTREAM-superpowers.md | Review during upstream sync |
-| FAIL-1 | Subagent test: skill discovery | Pressure test from `writing-skills/testing-skills-with-subagents.md` |
-| FAIL-2 | Subagent test: keyword specificity | Pressure test with ambiguous task description |
+Skills are validated via subagent pressure testing — not automated test suites.
+See `writing-skills/testing-skills-with-subagents.md` for the process.
 
 ## Dependencies
 

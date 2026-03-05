@@ -5,7 +5,7 @@
 
 ## Target Size
 
-100-400 lines. Under 100 means missing invariants or failure modes. Over 400
+80-300 lines. Under 80 means missing invariants or failure modes. Over 300
 means the subsystem should be split.
 
 ---
@@ -19,9 +19,9 @@ problem it solves and the key design decision that shaped it.]
 
 ## Core Mechanism
 
-[How it works — the mental model an agent needs to modify this code correctly.
-Include key algorithms, data flows, and architectural decisions. Reference
-specific files and functions by path.]
+[2-3 sentences on the key design decisions that shaped this subsystem — *why*
+it works this way, not *what* it does (the code already shows that). Include
+the mental model an agent needs to modify this code correctly.]
 
 **Key files:**
 - `path/to/entry-point.py` — [role]
@@ -55,29 +55,6 @@ mode gets an ID for test traceability.]
 | ID | Symptom | Cause | Fix |
 |---|---|---|---|
 | FAIL-1 | | | |
-
-## Testing
-
-[How to run tests for this subsystem. Include the exact command, any required
-fixtures or environment setup, and the mocking strategy.]
-
-```bash
-# Run subsystem tests
-[exact command here]
-```
-
-### Coverage
-
-Every INV-N must have at least one positive test (verifies the invariant holds).
-Every FAIL-N must have at least one negative test (verifies graceful handling).
-Test names include the spec item ID for bidirectional traceability.
-
-**Naming convention:** `test_inv1_description` for invariants, `test_fail1_description` for failure modes.
-
-| Spec Item | Test | Description |
-|---|---|---|
-| INV-1 | `test_inv1_[description]` | Verifies [invariant] holds |
-| FAIL-1 | `test_fail1_[description]` | Verifies [failure mode] is handled |
 
 ## Dependencies
 
