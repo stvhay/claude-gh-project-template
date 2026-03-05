@@ -73,8 +73,8 @@ Each task must be self-contained — a subagent receiving only this task text ha
 
 **Subsystem spec(s):** [Path to nearest SPEC.md, or "None — new subsystem"]
 **Key invariants from spec:** [List with IDs — the subagent must not violate these and must write tests for them]
-- INV-N: [description] → test: `test_invN_*`  `# Tests INV-N`
-- FAIL-N: [description] → test: `test_failN_*`  `# Tests FAIL-N`
+- INV-N: [description] → `def test_invN_description():  # Tests INV-N`
+- FAIL-N: [description] → `def test_failN_description():  # Tests FAIL-N`
 **Adjacent specs:** [If task touches other subsystems, list their SPEC.md paths and only the Public Interface contracts relevant to this task — not their full invariants]
 
 **Files:**
