@@ -39,5 +39,5 @@ Closes #
 - [ ] `/finishing-a-development-branch` (auto-triggered)
 - [ ] `/using-git-worktrees`
 - [ ] `/systematic-debugging`
-- [ ] `/writing-skills` (for skill contributions)
+- [ ] `/skill-creator` (for skill contributions)
 - [ ] `/writing-clearly-and-concisely`

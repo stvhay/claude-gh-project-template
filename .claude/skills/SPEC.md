@@ -9,8 +9,7 @@ field. Skills encode proven techniques, processes, and domain expertise that
 agents apply during specific task types (brainstorming, planning, testing, etc.).
 
 The key design decision: skills are documentation-as-code, version-controlled
-alongside the project, and tested via the same TDD methodology they prescribe
-(see `writing-skills/SKILL.md`).
+alongside the project, and tested via the same TDD methodology they prescribe.
 
 ## Core Mechanism
 
@@ -58,7 +57,7 @@ never by path.
 ## Testing
 
 Skills are validated via subagent pressure testing — not automated test suites.
-See `writing-skills/testing-skills-with-subagents.md` for the process.
+See `/skill-creator` for the testing process.
 
 ## Dependencies
 

@@ -26,7 +26,6 @@ result
 !.claude/skills/verification-before-completion/
 !.claude/skills/writing-clearly-and-concisely/
 !.claude/skills/writing-plans/
-!.claude/skills/writing-skills/
 
 # Local envrc overrides (per-machine)
 .envrc.local.d/
