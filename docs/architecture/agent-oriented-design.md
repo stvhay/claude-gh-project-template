@@ -51,7 +51,7 @@ The goal: an agent should load one directory and have everything needed to work 
 
 ## Implementation in This Template
 
-See the workflow in [`CONTRIBUTING.md`](../../CONTRIBUTING.md) for how this template's skills guide agents through the pattern.
+See the workflow in [`CONTRIBUTING.md`](../../CONTRIBUTING.md#workflow) for how this template's skills guide agents through the pattern.
 
 ## Sources
 
