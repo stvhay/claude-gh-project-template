@@ -40,12 +40,12 @@ See [`docs/spec-template.md`](../spec-template.md) for the format and [`/codify-
 
 ## Sources
 
-- Formal-LLM Research (2024). "Formal-LLM: Integrating Formal Language and Natural Language for Controllable LLM-based Agents." arXiv:2402.00798. https://arxiv.org/abs/2402.00798
+- Zhan, Q., et al. (2024). "Formal-LLM: Integrating Formal Language and Natural Language for Controllable LLM-based Agents." arXiv:2402.00798. https://arxiv.org/abs/2402.00798
 
 - Yang, J., Jimenez, C., et al. (2024). "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering." NeurIPS 2024. arXiv:2405.15793. https://arxiv.org/abs/2405.15793
 
-- Zhang, W., et al. (2024). "AutoCodeRover: Autonomous Program Improvement." arXiv:2404.05427. https://arxiv.org/abs/2404.05427
+- Zhang, Y., et al. (2024). "AutoCodeRover: Autonomous Program Improvement." arXiv:2404.05427. https://arxiv.org/abs/2404.05427
 
-- DevEval Benchmark (2024). "DevEval: A Manually-Annotated Code Generation Benchmark." ACL 2024 Findings. arXiv:2405.19856. https://arxiv.org/abs/2405.19856
+- Li, J., et al. (2024). "DevEval: A Manually-Annotated Code Generation Benchmark Aligned with Real-World Code Repositories." ACL 2024 Findings. arXiv:2405.19856. https://arxiv.org/abs/2405.19856
 
 - Meyer, B. (1992). "Design by Contract." Advances in Object-Oriented Software Engineering. Prentice Hall.

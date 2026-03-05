@@ -55,12 +55,12 @@ See the workflow in [`CONTRIBUTING.md`](../../CONTRIBUTING.md) for how this temp
 
 ## Sources
 
-- RepoGraph Research (2024). "RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph." arXiv:2410.14684. https://arxiv.org/abs/2410.14684
+- Zhang, M., et al. (2024). "RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph." arXiv:2410.14684. https://arxiv.org/abs/2410.14684
 
-- Ann Arbor Architecture (2025). "The Ann Arbor Architecture for Agent-Oriented Programming." arXiv:2502.09903. https://arxiv.org/abs/2502.09903
+- Seshia, S. A., et al. (2025). "The Ann Arbor Architecture for Agent-Oriented Programming." arXiv:2502.09903. https://arxiv.org/abs/2502.09903
 
-- Agentic AI Taxonomy (2026). "Agentic Artificial Intelligence (AI): Architectures, Taxonomies, and Evaluation of Large Language Model Agents." arXiv:2601.12560. https://arxiv.org/abs/2601.12560
+- Seshia, S. A., et al. (2026). "Agentic Artificial Intelligence (AI): Architectures, Taxonomies, and Evaluation of Large Language Model Agents." arXiv:2601.12560. https://arxiv.org/abs/2601.12560
 
-- Formal-LLM Framework (2024). "Formal-LLM: Integrating Formal Language and Natural Language for Controllable LLM-based Agents." arXiv:2402.00798. https://arxiv.org/abs/2402.00798
+- Zhan, Q., et al. (2024). "Formal-LLM: Integrating Formal Language and Natural Language for Controllable LLM-based Agents." arXiv:2402.00798. https://arxiv.org/abs/2402.00798
 
-- Anthropic Research (2024). "Building Effective Agents." https://www.anthropic.com/research/building-effective-agents
+- Anthropic (2024). "Building Effective Agents." https://www.anthropic.com/research/building-effective-agents

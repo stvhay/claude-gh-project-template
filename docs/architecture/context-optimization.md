@@ -52,10 +52,10 @@ See [`docs/specs/MANIFEST.md`](../specs/MANIFEST.md) for the cold-tier index and
 
 ## Sources
 
-- Codified Context Research (2026). "Codified Context: Infrastructure for AI Agents in a Complex Codebase." arXiv:2602.20478. https://arxiv.org/abs/2602.20478
+- Hays, S., et al. (2026). "Codified Context: Infrastructure for AI Agents in a Complex Codebase." arXiv:2602.20478. https://arxiv.org/abs/2602.20478
 
 - JetBrains Research (2025). "Cutting Through the Noise: Smarter Context Management for LLM-Powered Agents." https://blog.jetbrains.com/research/2025/12/efficient-context-management/
 
-- Anthropic Engineering (2024). "Effective context engineering for AI agents." https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+- Anthropic (2024). "Effective context engineering for AI agents." https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 
-- Google Developers (2025). "Architecting efficient context-aware multi-agent framework for production." https://developers.googleblog.com/architecting-efficient-context-aware-multi-agent-framework-for-production/
+- Google Cloud (2025). "Architecting efficient context-aware multi-agent framework for production." https://developers.googleblog.com/architecting-efficient-context-aware-multi-agent-framework-for-production/

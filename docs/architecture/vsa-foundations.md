@@ -40,7 +40,7 @@ See the Architecture section of [`CLAUDE.md`](../../CLAUDE.md#architecture) for 
 
 - Bogard, J. (2018). "Vertical Slice Architecture." https://www.jimmybogard.com/vertical-slice-architecture/
 
-- International Journal of Advanced Artificial Intelligence Research (2025). "Comparative Review of Clean Architecture and Vertical Slice Architecture Approaches for Enterprise .NET Applications." Vol. 2, Issue 11. https://aimjournals.com/index.php/ijaair/article/view/413
+- Saputra, A. D., et al. (2025). "Comparative Review of Clean Architecture and Vertical Slice Architecture Approaches for Enterprise .NET Applications." International Journal of Advanced Artificial Intelligence Research, Vol. 2, Issue 11. https://aimjournals.com/index.php/ijaair/article/view/413
 
 - Mark, G., Gudith, D., & Klocke, U. (2008). "The Cost of Interrupted Work: More Speed and Stress." CHI 2008. https://dl.acm.org/doi/10.1145/1357054.1357072
 
