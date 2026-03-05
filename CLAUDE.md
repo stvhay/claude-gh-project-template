@@ -47,6 +47,8 @@ On first use in a fresh clone, follow `docs/FIRST_RUN.md` to initialize project 
 
 > **Organizing principle:** Code is organized so any subsystem fits in a single
 > agent context window. Self-contained units over shared abstractions.
+>
+> See `docs/architecture/` for theoretical foundations.
 
 ### Directory Structure
 
