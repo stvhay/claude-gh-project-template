@@ -202,7 +202,7 @@ To remove all stopped dev containers:
 ```bash
 container ls -a --format json \
   | jq -r '.[] | select(.name | startswith("dev-")) | .name' \
-  | xargs -I{} container rm {}
+  | while read -r name; do container rm "$name"; done
 ```
 
 The shared Nix store (`~/.dev-containers/nix/`) and Claude config (`~/.dev-containers/claude/`) persist on the host. Delete them to reclaim disk space when no containers need them.
