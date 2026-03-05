@@ -5,9 +5,8 @@
 
 ## Target Size
 
-80-300 lines (reduced from 100-400 after removing the Testing/Coverage section).
-Under 80 means missing invariants or failure modes. Over 300 means the
-subsystem should be split.
+80-350 lines. Under 80 means missing invariants or failure modes. Over 350
+means the subsystem should be split.
 
 ---
 
@@ -43,9 +42,15 @@ An agent modifying this subsystem must not break these contracts.]
 that violates any of these has introduced a bug. Each invariant gets an ID for
 test traceability.]
 
-| ID | Invariant | Why It Matters |
-|---|---|---|
-| INV-1 | | |
+| ID | Invariant | Enforcement | Why It Matters |
+|---|---|---|---|
+| INV-1 | | structural / reasoning-required | |
+
+**Enforcement classification:**
+- **structural** — enforced by type system, API design, or code structure; pattern-matchable and universally respected
+- **reasoning-required** — needs architectural understanding; model-tier dependent
+
+Prioritize converting reasoning-required invariants to structural via API design.
 
 ## Failure Modes
 
@@ -56,6 +61,23 @@ mode gets an ID for test traceability.]
 | ID | Symptom | Cause | Fix |
 |---|---|---|---|
 | FAIL-1 | | | |
+
+## Decision Framework
+
+[Situation-keyed recipes for reasoning-required invariants. Converts declarative
+rules into procedural guidance for agents that can follow patterns but cannot
+infer architectural constraints. One entry per reasoning-required invariant.]
+
+| Situation | Action | Invariant |
+|---|---|---|
+| | | INV-N |
+
+## Testing
+
+**Traceability:** Test names encode the spec item ID (`test_invN_description`,
+`test_failN_description`). Items verified by other means should be noted here
+(e.g., "INV-1, INV-5: enforced by `tsc --noEmit`", "FAIL-2: operational —
+not unit-testable"). See CLAUDE.md Testing Convention.
 
 ## Dependencies
 
