@@ -75,6 +75,18 @@ Any special setup needed?"
 tests verify which invariants or failure modes?" (This informs the inline
 `# Tests INV-N` comments to add on test function declaration lines.)
 
+**Enforcement:** "Which invariants are enforced structurally (type system, API
+design, code structure) vs require architectural reasoning to follow?" (This
+populates the Enforcement column: `structural` or `reasoning-required`.)
+
+**Decision framework:** "For reasoning-required invariants, what's the
+situation-action recipe an agent should follow?" (e.g., "Need DB writes? →
+Submit IndexJob to queue." Populates the Decision Framework table.)
+
+**Non-runtime verification:** "Are any spec items verified by non-runtime means
+(e.g., type checker, code review, operational monitoring)?" (These get recorded
+in the Testing section so verification gaps aren't rediscovered every session.)
+
 **Purpose:** "Anything about *why* this subsystem exists that isn't obvious from
 the code?" (Sometimes the code shows *what* but not *why* — design decisions,
 alternatives considered, constraints from external systems.)
@@ -88,7 +100,9 @@ corresponding test, add a `# Tests INV-N` or `# Tests FAIL-N` inline comment
 on the test function's declaration line. Use the naming convention
 `test_invN_description` for invariant tests and `test_failN_description` for
 failure mode tests. Flag any spec items that lack corresponding tests — these
-need tests written.
+need tests written. For items verified by non-runtime means (type checker,
+code review, operational monitoring) or items with no coverage yet, record
+them in the SPEC.md's Testing section rather than just flagging ephemerally.
 
 **Existing non-conforming tests:** If the subsystem already has tests that
 cover spec items but use different naming, add the inline comment to those
@@ -124,7 +138,7 @@ If the spec covers cross-cutting concerns, also add to the
 - **One question at a time** — don't overwhelm the developer
 - **Code analysis first** — draft from code before asking questions
 - **Invariants are the most important section** — push for specifics
-- **80-300 lines** — under 80 means missing detail, over 300 means split
+- **80-350 lines** — under 80 means missing detail, over 350 means split
 - **Machine-readable format** — consistent sections, tables for structured data
 - **Commit the SPEC.md** — specs are load-bearing artifacts, version-controlled
 
