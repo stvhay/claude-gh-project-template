@@ -136,6 +136,7 @@ dev-container() {
 
       cd /workspace || { echo "Error: /workspace not available" >&2; exit 1; }
       CONTAINER_IP=$(hostname -i 2>/dev/null | awk "{print \$1}")
+      [ -n "$CONTAINER_IP" ] || echo "Warning: could not determine container IP" >&2
 
       # Write PATH and claude alias to ~/.profile for the login shell
       grep -q "# dev-container" ~/.profile 2>/dev/null || cat >> ~/.profile <<PROFILE
