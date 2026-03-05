@@ -113,9 +113,12 @@ dev-container() {
     return 1
   }
 
+  local container_name="dev-${project_dir##*/}"
+
   mkdir -p "$nix_cache" "$claude_config" || return 1
 
   container run \
+    --name "$container_name" \
     -v "$project_dir:/workspace" \
     -v "$nix_cache:/nix" \
     -v "$claude_config:/root/.claude" \
