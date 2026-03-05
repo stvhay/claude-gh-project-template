@@ -143,7 +143,7 @@ Then: `dev-container ~/Projects/my-app`
 - **Argument validation** — Requires exactly one argument (a directory path) and verifies the directory exists.
 - `mkdir -p "$nix_cache" "$claude_config"` — Ensure the shared Nix store and Claude config directories exist on the host.
 - `-v "$project_dir:/workspace"` — Bind-mount the project directory into the container. Edits are visible on both sides.
-- `-v "$nix_cache:/nix"` — Bind-mount a shared Nix store. Persisted across containers so packages are downloaded once.
+- `-v "$nix_cache:/nix"` — Bind-mount a shared Nix store. Persisted across containers so packages are downloaded once. **Do not delete `~/.dev-containers/nix/` while a container is running** — it replaces the container's entire `/nix`, so removing it breaks the container's Nix installation.
 - `-v "$claude_config:/root/.claude"` — Bind-mount Claude Code's config directory. Persists authentication and settings across containers so you only log in once.
 - `--ssh` — Forward the host SSH agent so git clone/push works inside the container.
 - `nixos/nix` — Stock OCI image with Nix pre-installed (Alpine-based).
