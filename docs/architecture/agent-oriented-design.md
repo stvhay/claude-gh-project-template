@@ -11,7 +11,7 @@ AI agents work differently. They can't "jump" without loading files into context
 Agent-oriented design follows one rule: minimize coupling between subsystems, maximize coupling within subsystems. This is Bogard's VSA principle adapted specifically for agent constraints.
 
 **Self-contained means:**
-- A subsystem's SPEC.md + source files fit in ~50% of context
+- A subsystem's SPEC.md + source files fit in ~50% of context (leaving room for tool outputs, multiple subsystems in cross-cutting tasks, and error messages)
 - Dependencies are explicit and minimal
 - Public interfaces are documented in the spec
 - An agent can understand and modify the subsystem without loading others
