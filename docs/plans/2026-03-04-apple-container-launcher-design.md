@@ -97,75 +97,7 @@ container is restarted. The alias only exists inside the container.
 
 ## The Function
 
-```bash
-dev-container() {
-  local nix_cache="${DEV_CONTAINER_NIX_CACHE:-$HOME/.dev-containers/nix}"
-  local claude_config="${DEV_CONTAINER_CLAUDE_CONFIG:-$HOME/.dev-containers/claude}"
-
-  if [[ $# -ne 1 ]]
-  then
-    echo "Usage: dev-container <project-directory>" >&2
-    return 1
-  fi
-
-  local project_dir
-  project_dir="$(cd "$1" 2>/dev/null && pwd)" || {
-    echo "Error: directory '$1' does not exist" >&2
-    return 1
-  }
-
-  local name_hash
-  name_hash=$(printf '%s' "$project_dir" | shasum | cut -c1-12)
-  local container_name="dev-${name_hash}"
-
-  if container inspect "$container_name" &>/dev/null
-  then
-    echo "Error: container for '$project_dir' already exists as '$container_name'" >&2
-    echo "  container rm $container_name" >&2
-    return 1
-  fi
-
-  mkdir -p "$nix_cache" "$claude_config" || return 1
-
-  container run \
-    --name "$container_name" \
-    -v "$project_dir:/workspace" \
-    -v "$nix_cache:/nix" \
-    -v "$claude_config:/root/.claude" \
-    --ssh \
-    nixos/nix \
-    /bin/sh -c '
-      set -e
-      # Install Claude Code if not already cached in shared Nix store
-      [ -x /nix/.npm-global/bin/claude ] || {
-        nix-env -iA nixpkgs.nodejs && npm i -g --prefix /nix/.npm-global @anthropic-ai/claude-code || {
-          echo "Error: Claude Code installation failed" >&2
-          exit 1
-        }
-      }
-      export PATH="/nix/.npm-global/bin:$PATH"
-
-      cd /workspace || { echo "Error: /workspace not available" >&2; exit 1; }
-      # \$1 because outer single-quote → inner sh sees \$1 in double quotes → literal $1 for awk
-      CONTAINER_IP=$(hostname -i 2>/dev/null | awk "{print \$1}")
-      [ -n "$CONTAINER_IP" ] || echo "Warning: could not determine container IP" >&2
-
-      # Write PATH and claude alias to ~/.profile for the login shell.
-      # The heredoc (<<PROFILE) is parsed by the inner sh, not the outer shell,
-      # because it appears inside a single-quoted sh -c string. $CONTAINER_IP
-      # expands (inner sh variable), while \$PATH is literal (escaped for profile).
-      grep -q "# dev-container" ~/.profile 2>/dev/null || cat >> ~/.profile <<PROFILE
-# dev-container
-export PATH="/nix/.npm-global/bin:\$PATH"
-alias claude="claude --dangerously-skip-permissions --append-system-prompt \"You are running inside an Apple Container. The container IP is $CONTAINER_IP. When launching or displaying URLs for dev servers, use http://$CONTAINER_IP:<port> instead of localhost.\""
-PROFILE
-      echo "Dev container ready at ${CONTAINER_IP:-<unknown IP>}"
-      echo "Services are accessible from the host at http://$CONTAINER_IP:<port>"
-      echo "Run: claude"
-      exec /bin/sh -l
-    '
-}
-```
+See `USAGE.md` — the function is defined and documented there.
 
 ## Deliverables
 
