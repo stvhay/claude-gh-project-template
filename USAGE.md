@@ -184,6 +184,25 @@ container ls --format json | jq -r '.[] | select(.status == "running") | .networ
 
 No `--publish` / `-p` port mapping is needed. Claude can use any port without pre-configuration.
 
+### Cleanup
+
+Containers persist after exit. To stop and remove one:
+
+```bash
+container stop dev-my-app
+container rm dev-my-app
+```
+
+To remove all stopped dev containers:
+
+```bash
+container ls -a --format json \
+  | jq -r '.[] | select(.name | startswith("dev-")) | .name' \
+  | xargs -I{} container rm {}
+```
+
+The shared Nix store (`~/.dev-containers/nix/`) and Claude config (`~/.dev-containers/claude/`) persist on the host. Delete them to reclaim disk space when no containers need them.
+
 ### Environment variables
 
 | Variable | Default | Purpose |
