@@ -113,7 +113,8 @@ dev-container() {
       # Install Claude Code if not already cached in shared Nix store
       [ -x /nix/.npm-global/bin/claude ] || {
         nix-env -iA nixpkgs.nodejs && npm i -g --prefix /nix/.npm-global @anthropic-ai/claude-code || {
-          echo "Warning: Claude Code installation failed" >&2
+          echo "Error: Claude Code installation failed" >&2
+          exit 1
         }
       }
       export PATH="/nix/.npm-global/bin:$PATH"
