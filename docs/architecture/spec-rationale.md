@@ -4,7 +4,7 @@
 
 Code shows *what* a system does, not *why* it does it that way. Invariants—things that must always be true—often exist only in developers' heads or scattered across comments. When an agent modifies code, it can easily violate these invisible constraints without realizing the breakage.
 
-Research on LLM-based code generation shows agents achieve only 22% success on real-world GitHub issues [AutoCodeRover 2024] and 53% on manually-annotated repository tasks [DevEval 2024]. A major failure mode: violating unstated invariants because the code doesn't encode its own correctness conditions.
+Research on LLM-based code generation shows agents achieve only 19% success on real-world GitHub issues [AutoCodeRover 2024] and 53% on manually-annotated repository tasks [DevEval 2024]. A major failure mode: violating unstated invariants because the code doesn't encode its own correctness conditions.
 
 ## Why Machine-Readable Specs
 

@@ -2,7 +2,7 @@
 
 ## The Problem with Layers
 
-Traditional layered architecture organizes code by technical concerns—controllers, services, repositories, models. To understand a single feature, developers must mentally assemble pieces scattered across multiple layers. Research shows this context switching costs 23 minutes per interruption [Mark et al.], and working memory holds approximately 7 items during program tracing [Crichton et al. 2021].
+Traditional layered architecture organizes code by technical concerns—controllers, services, repositories, models. To understand a single feature, developers must mentally assemble pieces scattered across multiple layers. Research shows this context switching costs 23 minutes per interruption [Mark et al. 2008], and working memory capacity during program tracing is limited [Crichton et al. 2021].
 
 For AI agents, layered architecture creates a harder problem: agents must load multiple files across layers to understand one feature, exhausting their context window with cross-references rather than using tokens for reasoning.
 
@@ -42,7 +42,7 @@ See the Architecture section of [`CLAUDE.md`](../../CLAUDE.md#architecture) for 
 
 - International Journal of Advanced Artificial Intelligence Research (2025). "Comparative Review of Clean Architecture and Vertical Slice Architecture Approaches for Enterprise .NET Applications." Vol. 2, Issue 11. https://aimjournals.com/index.php/ijaair/article/view/413
 
-- Mark, G., Gonzalez, V. M., & Harris, J. "Attention Residue and Context Switching Costs in Software Development." University of California, Irvine. https://super-productivity.com/blog/context-switching-costs-for-developers/
+- Mark, G., Gudith, D., & Klocke, U. (2008). "The Cost of Interrupted Work: More Speed and Stress." CHI 2008. https://dl.acm.org/doi/10.1145/1357054.1357072
 
 - Crichton, W., et al. (2021). "The Role of Working Memory in Program Tracing." CHI 2021. https://dl.acm.org/doi/10.1145/3411764.3445257
 
