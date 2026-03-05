@@ -137,7 +137,7 @@ Mark each task's dependencies explicitly. Independent tasks can be dispatched to
 - For cross-cutting tasks: full spec for primary subsystem, Public Interface only for adjacent subsystems. If >2 specs are relevant, the task is too large — split it by subsystem boundary
 - Mark dependencies between tasks
 - Acceptance criteria = what must be TRUE = the tests
-- Anchor tests to SPEC.md item IDs (INV-N, FAIL-N) with inline `# Tests INV-N` comments on def lines
+- Anchor tests to SPEC.md item IDs (INV-N, FAIL-N) with inline `# Tests INV-N` comments on declaration lines
 - DRY, YAGNI, TDD, frequent commits
 
 ## Execution Handoff

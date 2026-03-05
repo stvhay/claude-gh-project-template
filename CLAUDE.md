@@ -111,7 +111,7 @@ test verifying graceful handling. Test names include the spec item ID for
 traceability (e.g., test_inv1_total_equals_sum, test_fail2_rejects_expired).
 
 Traceability lives in test files, not in specs. Add an inline comment on the
-test function's `def` line: `# Tests INV-N` or `# Tests FAIL-N`. This stays
+test function's declaration line: `# Tests INV-N` or `# Tests FAIL-N`. This stays
 in sync naturally because the comment lives next to the code it describes.
 
 ## Workflow

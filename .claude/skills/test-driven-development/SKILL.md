@@ -75,7 +75,7 @@ When the subsystem has a SPEC.md, anchor tests to spec item IDs:
 - Each **INV-N** gets a positive test: `test_invN_description` — verifies the invariant holds
 - Each **FAIL-N** gets a negative test: `test_failN_description` — verifies graceful handling
 
-Add an inline comment on the test's `def` line for traceability:
+Add an inline comment on the test's declaration line for traceability:
 `def test_inv1_total_equals_sum():  # Tests INV-1`
 
 This doesn't change the red-green-refactor cycle — it tells you *what* to test.

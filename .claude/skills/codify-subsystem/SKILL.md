@@ -73,7 +73,7 @@ Any special setup needed?"
 
 **Test mapping:** "Are there existing tests for this subsystem? If so, which
 tests verify which invariants or failure modes?" (This informs the inline
-`# Tests INV-N` comments to add on test method def lines.)
+`# Tests INV-N` comments to add on test function declaration lines.)
 
 **Purpose:** "Anything about *why* this subsystem exists that isn't obvious from
 the code?" (Sometimes the code shows *what* but not *why* — design decisions,
@@ -85,7 +85,7 @@ Incorporate all answers. Write the final SPEC.md to the target directory.
 
 **Inline test comments:** For each spec item (INV-N, FAIL-N) that has a
 corresponding test, add a `# Tests INV-N` or `# Tests FAIL-N` inline comment
-on the test method's `def` line. Use the naming convention
+on the test function's declaration line. Use the naming convention
 `test_invN_description` for invariant tests and `test_failN_description` for
 failure mode tests. Flag any spec items that lack corresponding tests — these
 need tests written.
@@ -124,7 +124,7 @@ If the spec covers cross-cutting concerns, also add to the
 - **One question at a time** — don't overwhelm the developer
 - **Code analysis first** — draft from code before asking questions
 - **Invariants are the most important section** — push for specifics
-- **100-400 lines** — under 100 means missing detail, over 400 means split
+- **80-300 lines** — under 80 means missing detail, over 300 means split
 - **Machine-readable format** — consistent sections, tables for structured data
 - **Commit the SPEC.md** — specs are load-bearing artifacts, version-controlled
 
