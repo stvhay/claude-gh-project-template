@@ -77,6 +77,7 @@ Add the `dev-container` function to your shell profile to launch projects inside
 - macOS 26 (Tahoe) or later
 - Apple Silicon Mac
 - [Apple Container](https://github.com/apple/container) installed
+- [jq](https://jqlang.github.io/jq/) (used by cleanup commands)
 
 ### The function
 
