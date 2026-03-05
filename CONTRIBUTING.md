@@ -75,7 +75,7 @@ These skills ship with the repo in `.claude/skills/`. They are loaded automatica
 | `/systematic-debugging` | When encountering bugs or test failures |
 | `/using-git-worktrees` | To create an isolated worktree for feature work |
 | `/writing-clearly-and-concisely` | Final editing pass on prose (docs, commit messages) |
-| `/writing-skills` | When creating or modifying skills in `.claude/skills/` |
+| `/skill-creator` | When creating or modifying skills in `.claude/skills/` |
 | `/codify-subsystem` | To create or update a subsystem SPEC.md |
 
 ## Project-Specific Guidelines
@@ -88,7 +88,7 @@ These skills ship with the repo in `.claude/skills/`. They are loaded automatica
 
 Skills live in `.claude/skills/<skill-name>/SKILL.md`. To add or modify a skill:
 
-1. Use `/writing-skills` — it applies TDD to process documentation
+1. Use `/skill-creator` — it applies TDD to process documentation
 2. Follow the same issue, plan, PR workflow as any other contribution
 3. Test the skill by running it in a fresh Claude Code session
 
@@ -97,7 +97,7 @@ Skills live in `.claude/skills/<skill-name>/SKILL.md`. To add or modify a skill:
 Several skills are derived from upstream open-source projects:
 
 - **obra/superpowers** — The following skills originate from [obra/superpowers](https://github.com/obra/superpowers). MIT License. See [LICENSE.superpowers](LICENSE.superpowers). Sync status tracked in `.claude/skills/UPSTREAM-superpowers.md`.
-  - Tracked in this repo: `brainstorming`, `dispatching-parallel-agents`, `executing-plans`, `finishing-a-development-branch`, `receiving-code-review`, `requesting-code-review`, `subagent-driven-development`, `systematic-debugging`, `test-driven-development`, `using-git-worktrees`, `verification-before-completion`, `writing-plans`, `writing-skills`
+  - Tracked in this repo: `brainstorming`, `dispatching-parallel-agents`, `executing-plans`, `finishing-a-development-branch`, `receiving-code-review`, `requesting-code-review`, `subagent-driven-development`, `systematic-debugging`, `test-driven-development`, `using-git-worktrees`, `verification-before-completion`, `writing-plans`
   - Available locally (not committed): `using-superpowers`
 - **writing-clearly-and-concisely** — Based on William Strunk Jr.'s *The Elements of Style* (1918, public domain).
 

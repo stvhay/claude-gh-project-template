@@ -21,11 +21,13 @@ Several skills in this repo originate from [obra/superpowers](https://github.com
 | using-superpowers | not tracked | Meta-skill for plugin discovery; redundant with native Claude Code skill loading |
 | verification-before-completion | identical+ | Appended section: code-simplification pipeline integration |
 | writing-plans | diverged | Task context budget (~50% of subagent window), self-contained tasks, dependency markers, acceptance criteria |
-| writing-skills | identical | Minor: `superpowers:` prefix stripped |
 
 **identical** — matches upstream (may have trivial prefix changes).
 **identical+** — our additions appended at end; upstream content unchanged above.
 **diverged** — structural differences throughout; requires manual merge on sync.
+
+**Removed skills:**
+- `writing-skills` — Replaced by custom `skill-creator` plugin (stvhay/my-claude-plugins). No longer tracked here.
 
 ## Where and why we differ
 
