@@ -23,6 +23,18 @@ OCI-compatible). No custom image build required.
 
 ## Architecture
 
+### Container Naming
+
+Containers are named `dev-<hash>` where `<hash>` is the first 12 characters
+of the MD5 of the project's absolute path. This avoids collisions between
+projects that share a basename (e.g., `~/work/app` and `~/personal/app`)
+and eliminates edge cases with special characters in directory names.
+
+Uses `md5` (native macOS BSD utility) rather than `shasum` (Perl wrapper).
+
+The function checks for an existing container with the same name before
+launching and prints the `container rm` command if one exists.
+
 ### Bind Mounts
 
 | Host Path | Container Path | Purpose |
@@ -64,6 +76,10 @@ uses a direct path test (`[ -x /nix/.npm-global/bin/claude ]`) rather than
 `command -v` to avoid false negatives before PATH is configured. Cached in
 the shared Nix store so subsequent containers skip installation.
 
+The setup script runs with `set -e` so any uncaught failure aborts the
+container launch. The install block uses `||` chains for its own error
+handling (which suppresses `set -e` for the left-hand side).
+
 Claude Code's config directory (`~/.claude`) is bind-mounted from the host,
 so authentication and settings persist across containers. The host stores
 API keys in the macOS Keychain, but inside the Linux container Claude Code
@@ -87,6 +103,19 @@ Both the PATH export and alias are written to `~/.profile` on the container
 filesystem (`/root/.profile` — not inside a bind mount). The
 `# dev-container` marker guards against duplicate entries if a stopped
 container is restarted. The alias only exists inside the container.
+
+### Resuming a Stopped Container
+
+Containers persist after exit. To re-enter:
+
+```bash
+container start dev-<hash>
+container exec -it dev-<hash> /bin/sh -l
+```
+
+`container start` resumes the stopped container. `container exec -it` opens
+an interactive login shell. The `-l` flag sources `~/.profile`, restoring
+the PATH and `claude` alias from the original setup.
 
 ### Environment Variables
 
@@ -121,3 +150,4 @@ See `USAGE.md` — the function is defined and documented there.
 
 - macOS 26 (Tahoe) with Apple Container installed
 - Apple Silicon Mac
+- [jq](https://jqlang.github.io/jq/) (used by cleanup commands)

@@ -103,7 +103,7 @@ dev-container() {
   }
 
   local name_hash
-  name_hash=$(printf '%s' "$project_dir" | shasum | cut -c1-12)
+  name_hash=$(printf '%s' "$project_dir" | md5 | cut -c1-12)
   local container_name="dev-${name_hash}"
 
   if container inspect "$container_name" &>/dev/null
@@ -160,7 +160,7 @@ Then: `dev-container ~/Projects/my-app`
 ### What each step does
 
 - **Argument validation** — Requires exactly one argument (a directory path) and verifies the directory exists.
-- **Container naming** — The container is named `dev-<hash>` where `<hash>` is the first 12 characters of the SHA-1 of the project's absolute path. This avoids collisions between projects that share a basename (e.g., `~/work/app` and `~/personal/app`) and eliminates edge cases with special characters in directory names.
+- **Container naming** — The container is named `dev-<hash>` where `<hash>` is the first 12 characters of the MD5 of the project's absolute path. This avoids collisions between projects that share a basename (e.g., `~/work/app` and `~/personal/app`) and eliminates edge cases with special characters in directory names. Uses `md5` (native macOS BSD utility) rather than `shasum` (Perl wrapper).
 - **Collision check** — If a container for this project already exists, prints the `container rm` command and exits.
 - `mkdir -p "$nix_cache" "$claude_config"` — Ensure the shared Nix store and Claude config directories exist on the host.
 - `-v "$project_dir:/workspace"` — Bind-mount the project directory into the container. Edits are visible on both sides.
@@ -207,6 +207,23 @@ container ls -a --format json \
 ```
 
 The shared Nix store (`~/.dev-containers/nix/`) and Claude config (`~/.dev-containers/claude/`) persist on the host. Delete them to reclaim disk space when no containers need them.
+
+### Resuming a stopped container
+
+Containers persist after exit. To re-enter one:
+
+```bash
+container start dev-<hash>
+container exec -it dev-<hash> /bin/sh -l
+```
+
+`container start` resumes the stopped container. `container exec -it` opens an interactive login shell inside it — the `-l` flag sources `~/.profile`, which restores the PATH and `claude` alias configured during the original setup.
+
+To find the container name:
+
+```bash
+container ls -a   # shows all containers including stopped ones
+```
 
 ### Environment variables
 
