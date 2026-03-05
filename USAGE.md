@@ -103,6 +103,12 @@ dev-container() {
 
   local container_name="dev-${project_dir##*/}"
 
+  if container inspect "$container_name" &>/dev/null
+  then
+    echo "Error: container '$container_name' already exists (use 'container rm $container_name' to remove it)" >&2
+    return 1
+  fi
+
   mkdir -p "$nix_cache" "$claude_config" || return 1
 
   container run \
@@ -149,7 +155,8 @@ Then: `dev-container ~/Projects/my-app`
 ### What each step does
 
 - **Argument validation** — Requires exactly one argument (a directory path) and verifies the directory exists.
-- `--name "dev-${project_dir##*/}"` — Name the container `dev-<basename>` (e.g., `dev-my-app`) so it's identifiable in `container ls`. Uses the directory basename only, so two projects with the same basename (e.g., `~/work/app` and `~/personal/app`) will collide — rename one directory to disambiguate.
+- **Name collision check** — Verifies no container named `dev-<basename>` already exists. If one does, prints the `container rm` command to remove it. This catches the case where two projects share a basename (e.g., `~/work/app` and `~/personal/app`) — rename one directory to disambiguate.
+- `--name "dev-${project_dir##*/}"` — Name the container `dev-<basename>` (e.g., `dev-my-app`) so it's identifiable in `container ls`.
 - `mkdir -p "$nix_cache" "$claude_config"` — Ensure the shared Nix store and Claude config directories exist on the host.
 - `-v "$project_dir:/workspace"` — Bind-mount the project directory into the container. Edits are visible on both sides.
 - `-v "$nix_cache:/nix"` — Bind-mount a shared Nix store. Persisted across containers so packages are downloaded once. **Do not delete `~/.dev-containers/nix/` while a container is running** — it replaces the container's entire `/nix`, so removing it breaks the container's Nix installation.
