@@ -56,6 +56,10 @@ For quick-start aliases and usage examples, see [USAGE.md](USAGE.md).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow.
 
+## Architecture & Theory
+
+See [docs/architecture/](docs/architecture/) for the theoretical foundations behind this template's design decisions.
+
 ## License
 
 [MIT](LICENSE)
