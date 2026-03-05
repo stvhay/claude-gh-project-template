@@ -14,7 +14,7 @@ SPEC.md files make invariants explicit and verifiable. Each subsystem declares:
 - **Public interface:** Contracts other subsystems depend on
 - **Dependencies:** What this subsystem requires
 
-Before modifying code, an agent reads the nearest SPEC.md (walking up the directory tree like .gitignore resolution), understands the contracts, and can verify proposed changes won't violate invariants.
+Before modifying code, an agent reads the nearest SPEC.md (walking up the directory tree like .gitignore resolution), understands the contracts, and verifies proposed changes won't violate invariants.
 
 This approach builds on design-by-contract principles but optimizes for agent consumption: structured markdown with explicit IDs (INV-1, FAIL-2) that map directly to tests. The Formal-LLM framework demonstrated that constraining LLM behavior with formal specifications significantly improves correctness [arXiv:2402.00798, 2024].
 

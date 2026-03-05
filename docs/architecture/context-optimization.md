@@ -42,7 +42,7 @@ Each subsystem targets ~50% of the agent's context window (SPEC.md + source file
 - Multiple subsystems in cross-cutting tasks
 - Error messages and debugging information
 
-When a subsystem exceeds this budget, it signals decomposition is needed. The context constraint becomes an architectural forcing function: if an agent can't hold your subsystem in context, it's probably too complex for humans too.
+When a subsystem exceeds this budget, decomposition is needed. The context constraint becomes an architectural forcing function: if an agent can't hold your subsystem in context, humans will struggle too.
 
 The Codified Context research demonstrated this scales to enterprise systems: their 34-specification knowledge base with 19 specialized agents maintained consistency across long-running development work [arXiv:2602.20478, 2026].
 

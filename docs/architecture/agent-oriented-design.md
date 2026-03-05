@@ -37,7 +37,7 @@ The template enforces this workflow:
 3. **Modify safely:** Make changes within documented boundaries
 4. **Verify correctness:** Run tests mapped to spec items (INV-N, FAIL-N)
 
-This maps to how agents reason best: given explicit preconditions and postconditions, they can generate correct transformations. The Formal-LLM framework demonstrated 44% accuracy improvement when constraining agent behavior with formal specifications [arXiv:2402.00798, 2024].
+This maps to how agents reason best: given explicit preconditions and postconditions, they generate correct transformations. The Formal-LLM framework demonstrated 44% accuracy improvement when constraining agent behavior with formal specifications [arXiv:2402.00798, 2024].
 
 ## Design Guidelines
 

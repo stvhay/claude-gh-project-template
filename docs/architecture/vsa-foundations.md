@@ -4,7 +4,7 @@
 
 Traditional layered architecture organizes code by technical concerns—controllers, services, repositories, models. To understand a single feature, developers must mentally assemble pieces scattered across multiple layers. Research shows this context switching costs 23 minutes per interruption [Mark et al.], and working memory holds approximately 7 items during program tracing [Crichton et al. 2021].
 
-For AI agents, layered architecture creates an even harder problem: agents must load multiple files across different layers to understand one feature, quickly exhausting their context window with cross-references instead of using tokens for reasoning.
+For AI agents, layered architecture creates a harder problem: agents must load multiple files across layers to understand one feature, exhausting their context window with cross-references rather than using tokens for reasoning.
 
 ## Why Vertical Slices Work
 
@@ -19,7 +19,7 @@ Jimmy Bogard formalized this as "minimize coupling between slices, and maximize 
 
 ## Agent Benefits
 
-For AI agents, vertical slices provide a critical advantage: a single directory load fits in the context window and contains everything needed to modify a feature safely. The agent doesn't hunt across layers or resolve dependencies—it reads one SPEC.md, understands the contracts, and works within that subsystem's boundaries.
+For AI agents, vertical slices provide a critical advantage: a single directory load fits in the context window and contains everything needed to modify a feature safely. The agent reads one SPEC.md, understands the contracts, and works within that subsystem's boundaries—no hunting across layers, no resolving dependencies.
 
 This maps directly to how agents work best: given a focused problem space with clear boundaries, they can reason effectively. Scatter that same feature across layers, and the agent must juggle references, increasing hallucination risk and context exhaustion.
 
