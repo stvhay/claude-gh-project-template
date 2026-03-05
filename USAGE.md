@@ -101,11 +101,14 @@ dev-container() {
     return 1
   }
 
-  local container_name="dev-${project_dir##*/}"
+  local name_hash
+  name_hash=$(printf '%s' "$project_dir" | shasum | cut -c1-12)
+  local container_name="dev-${name_hash}"
 
   if container inspect "$container_name" &>/dev/null
   then
-    echo "Error: container '$container_name' already exists (use 'container rm $container_name' to remove it)" >&2
+    echo "Error: container for '$project_dir' already exists as '$container_name'" >&2
+    echo "  container rm $container_name" >&2
     return 1
   fi
 
@@ -155,8 +158,8 @@ Then: `dev-container ~/Projects/my-app`
 ### What each step does
 
 - **Argument validation** — Requires exactly one argument (a directory path) and verifies the directory exists.
-- **Name collision check** — Verifies no container named `dev-<basename>` already exists. If one does, prints the `container rm` command to remove it. This catches the case where two projects share a basename (e.g., `~/work/app` and `~/personal/app`) — rename one directory to disambiguate.
-- `--name "dev-${project_dir##*/}"` — Name the container `dev-<basename>` (e.g., `dev-my-app`) so it's identifiable in `container ls`.
+- **Container naming** — The container is named `dev-<hash>` where `<hash>` is the first 12 characters of the SHA-1 of the project's absolute path. This avoids collisions between projects that share a basename (e.g., `~/work/app` and `~/personal/app`) and eliminates edge cases with special characters in directory names.
+- **Collision check** — If a container for this project already exists, prints the `container rm` command and exits.
 - `mkdir -p "$nix_cache" "$claude_config"` — Ensure the shared Nix store and Claude config directories exist on the host.
 - `-v "$project_dir:/workspace"` — Bind-mount the project directory into the container. Edits are visible on both sides.
 - `-v "$nix_cache:/nix"` — Bind-mount a shared Nix store. Persisted across containers so packages are downloaded once. **Do not delete `~/.dev-containers/nix/` while a container is running** — it replaces the container's entire `/nix`, so removing it breaks the container's Nix installation.
@@ -185,11 +188,12 @@ No `--publish` / `-p` port mapping is needed. Claude can use any port without pr
 
 ### Cleanup
 
-Containers persist after exit. To stop and remove one:
+Containers persist after exit. To find and remove one:
 
 ```bash
-container stop dev-my-app
-container rm dev-my-app
+container ls -a   # find the dev-<hash> name
+container stop dev-<hash>
+container rm dev-<hash>
 ```
 
 To remove all stopped dev containers:

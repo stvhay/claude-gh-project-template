@@ -114,7 +114,16 @@ dev-container() {
     return 1
   }
 
-  local container_name="dev-${project_dir##*/}"
+  local name_hash
+  name_hash=$(printf '%s' "$project_dir" | shasum | cut -c1-12)
+  local container_name="dev-${name_hash}"
+
+  if container inspect "$container_name" &>/dev/null
+  then
+    echo "Error: container for '$project_dir' already exists as '$container_name'" >&2
+    echo "  container rm $container_name" >&2
+    return 1
+  fi
 
   mkdir -p "$nix_cache" "$claude_config" || return 1
 
@@ -164,11 +173,9 @@ PROFILE
 
 ## Known Limitations
 
-- **Container name collision** — `dev-${project_dir##*/}` uses only the
-  directory basename. Two projects with the same basename (e.g., `~/work/app`
-  and `~/personal/app`) will try to create `dev-app`, and the second
-  `container run` will fail with a duplicate name error. Rename one
-  directory to disambiguate.
+- **Opaque container names** — `dev-<hash>` names are not human-readable.
+  Use `container ls -a` to find container names, or note the name printed
+  at startup.
 
 ## Not In Scope
 
